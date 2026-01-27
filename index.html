@@ -57,6 +57,7 @@
     <script src="js/levels/level08-motte-bailey.js"></script>
     <script src="js/levels/level09-conflict-mistake.js"></script>
     <script src="js/levels/level10-ssri.js"></script>
+    <script src="js/levels/coda-finale.js"></script>
 
     <script>
     // --- Level Registry ---
@@ -93,7 +94,42 @@
             card.onclick = () => launchLevel(level);
             grid.appendChild(card);
         });
+
+        // Add Coda card — visible when at least one level is completed
+        const completedCount = LEVELS.filter(l => Protagonist.isLevelCompleted(l.num)).length;
+        const insightCount = Protagonist.getInsights().length;
+        if (completedCount > 0 && typeof CodaFinale !== 'undefined') {
+            const codaCard = document.createElement('div');
+            codaCard.className = 'level-card coda-card';
+            if (Protagonist.isLevelCompleted(11)) {
+                codaCard.classList.add('completed');
+            }
+            const codaStatus = completedCount === 10
+                ? 'All insights gathered. The coalition awaits.'
+                : `${insightCount}/10 insights collected. ${10 - insightCount} remain.`;
+            codaCard.innerHTML = `
+                <div class="level-num" style="color:#ffd764;">CODA</div>
+                <div class="level-title">The Final Confrontation</div>
+                <div class="level-genre">Elua vs. Moloch</div>
+                <div class="level-desc">${codaStatus}</div>
+            `;
+            codaCard.onclick = () => launchCoda();
+            grid.appendChild(codaCard);
+        }
+
         updateHUD();
+    }
+
+    // --- Launch Coda ---
+    function launchCoda() {
+        document.getElementById('menu-screen').style.display = 'none';
+        document.getElementById('game-container').classList.add('active');
+        document.getElementById('hud-overlay').classList.add('active');
+        document.getElementById('hud-level-name').textContent = 'Coda: The Final Confrontation';
+        updateHUD();
+
+        Engine.init('gameCanvas');
+        Engine.startLevel(CodaFinale);
     }
 
     // --- Launch Level ---

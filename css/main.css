@@ -134,6 +134,38 @@ html, body {
     line-height: 1.4;
 }
 
+/* --- Coda Card (Final Confrontation) --- */
+.level-card.coda-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--bg-dark), #1a1020);
+    border-color: var(--gold-dim);
+    border-width: 2px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 215, 100, 0.05);
+}
+
+.level-card.coda-card:hover {
+    border-color: var(--gold-elua);
+    box-shadow: 0 0 40px rgba(255, 215, 100, 0.15);
+}
+
+.level-card.coda-card .level-title {
+    font-size: 20px;
+}
+
+.level-card.coda-card .level-genre {
+    color: var(--orange-moloch);
+    font-weight: bold;
+}
+
+.level-card.coda-card.completed {
+    border-color: var(--gold-elua);
+}
+
+.level-card.coda-card.completed::after {
+    color: var(--gold-elua);
+}
+
 /* --- Game Container --- */
 #game-container {
     display: none;
