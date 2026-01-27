@@ -1,0 +1,2 @@
+# sscgame
+SlateStarCodex game
