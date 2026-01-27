@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex Descending — A Ten-Level Video Game Based on SlateStarCodex</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Menu Screen -->
+    <div id="menu-screen">
+        <h1>CODEX DESCENDING</h1>
+        <div class="subtitle">A Ten-Level Video Game Based on SlateStarCodex</div>
+
+        <div class="level-grid" id="level-grid"></div>
+
+        <div class="menu-footer">
+            <button id="reset-btn" onclick="resetProgress()">Reset Progress</button>
+            <button id="insights-btn" onclick="showInsights()">Collected Insights</button>
+        </div>
+
+        <div class="menu-quote">
+            "The Universe is a dark and foreboding place, suspended between alien deities.
+            Somewhere in this darkness is another god — the god of flowers and free love
+            and all soft and fragile things."
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <div id="hud-overlay">
+            <div class="hud-section">
+                <button id="back-btn" onclick="returnToMenu()">&#x2190; Menu</button>
+                <span class="hud-label" id="hud-level-name"></span>
+            </div>
+            <div class="hud-section">
+                <span class="hud-label">Humanity</span>
+                <span class="hud-value" id="hud-humanity"></span>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- Scripts: save first (dependency of protagonist), then engine, then protagonist -->
+    <script src="js/save.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/protagonist.js"></script>
+
+    <!-- Level scripts -->
+    <script src="js/levels/level01-moloch.js"></script>
+    <script src="js/levels/level02-outgroup.js"></script>
+    <script src="js/levels/level03-toxoplasma.js"></script>
+    <script src="js/levels/level04-control-group.js"></script>
+    <script src="js/levels/level05-commensurable.js"></script>
+    <script src="js/levels/level06-talents.js"></script>
+    <script src="js/levels/level07-secret-success.js"></script>
+    <script src="js/levels/level08-motte-bailey.js"></script>
+    <script src="js/levels/level09-conflict-mistake.js"></script>
+    <script src="js/levels/level10-ssri.js"></script>
+
+    <script>
+    // --- Level Registry ---
+    const LEVELS = [
+        { num: 1, id: 'moloch', title: 'Meditations on Moloch', genre: 'Tower Defense / Reverse TD', desc: 'Coordination failures and the demon god of optimization.', module: typeof Level01Moloch !== 'undefined' ? Level01Moloch : null },
+        { num: 2, id: 'outgroup', title: 'I Can Tolerate Anything Except The Outgroup', genre: 'Social Puzzle', desc: 'We hate our near enemies, not our far enemies.', module: typeof Level02Outgroup !== 'undefined' ? Level02Outgroup : null },
+        { num: 3, id: 'toxoplasma', title: 'The Toxoplasma of Rage', genre: 'Infection Strategy', desc: 'Controversial cases spread further than clear-cut ones.', module: typeof Level03Toxoplasma !== 'undefined' ? Level03Toxoplasma : null },
+        { num: 4, id: 'control-group', title: 'The Control Group Is Out of Control', genre: 'Lab Management / Stats Puzzle', desc: 'If rigorous studies find false positives, what does that say about all science?', module: typeof Level04ControlGroup !== 'undefined' ? Level04ControlGroup : null },
+        { num: 5, id: 'commensurable', title: 'Nobody Is Perfect, Everything Is Commensurable', genre: 'Resource Management', desc: 'Perfectionism is the enemy of good.', module: typeof Level05Commensurable !== 'undefined' ? Level05Commensurable : null },
+        { num: 6, id: 'talents', title: 'The Parable of the Talents', genre: 'RPG with Hidden Stats', desc: 'Ability is largely innate. It\'s genetic luck.', module: typeof Level06Talents !== 'undefined' ? Level06Talents : null },
+        { num: 7, id: 'secret-success', title: 'The Secret of Our Success', genre: 'Survival / Mystery', desc: 'Culture, not individual intelligence, is humanity\'s superpower.', module: typeof Level07SecretSuccess !== 'undefined' ? Level07SecretSuccess : null },
+        { num: 8, id: 'motte-bailey', title: 'All In All, Another Brick In The Motte', genre: 'Debate Strategy', desc: 'The motte-and-bailey fallacy: bold claims, safe retreats.', module: typeof Level08MotteBailey !== 'undefined' ? Level08MotteBailey : null },
+        { num: 9, id: 'conflict-mistake', title: 'Conflict vs. Mistake', genre: 'Dual-Mode Strategy', desc: 'Are opponents wrong, or evil? Two fundamentally different worldviews.', module: typeof Level09ConflictMistake !== 'undefined' ? Level09ConflictMistake : null },
+        { num: 10, id: 'ssri', title: 'SSRIs — Much More Than You Wanted To Know', genre: 'Body-Horror Puzzle', desc: 'The truth about antidepressants is complicated.', module: typeof Level10SSRI !== 'undefined' ? Level10SSRI : null }
+    ];
+
+    // --- Build Menu ---
+    function buildMenu() {
+        Protagonist.load();
+        const grid = document.getElementById('level-grid');
+        grid.innerHTML = '';
+        LEVELS.forEach(level => {
+            const card = document.createElement('div');
+            card.className = 'level-card';
+            if (Protagonist.isLevelCompleted(level.num)) {
+                card.classList.add('completed');
+            }
+            card.innerHTML = `
+                <div class="level-num">Level ${level.num}</div>
+                <div class="level-title">${level.title}</div>
+                <div class="level-genre">${level.genre}</div>
+                <div class="level-desc">${level.desc}</div>
+            `;
+            card.onclick = () => launchLevel(level);
+            grid.appendChild(card);
+        });
+        updateHUD();
+    }
+
+    // --- Launch Level ---
+    function launchLevel(level) {
+        if (!level.module) {
+            alert('This level is not yet implemented.');
+            return;
+        }
+        document.getElementById('menu-screen').style.display = 'none';
+        document.getElementById('game-container').classList.add('active');
+        document.getElementById('hud-overlay').classList.add('active');
+        document.getElementById('hud-level-name').textContent = `Level ${level.num}: ${level.title}`;
+        updateHUD();
+
+        Engine.init('gameCanvas');
+        Engine.startLevel(level.module);
+    }
+
+    // --- Return to Menu ---
+    function returnToMenu() {
+        Engine.stopLevel();
+        Protagonist.save();
+        document.getElementById('game-container').classList.remove('active');
+        document.getElementById('hud-overlay').classList.remove('active');
+        document.getElementById('menu-screen').style.display = '';
+        buildMenu();
+    }
+
+    // --- Update HUD ---
+    function updateHUD() {
+        const h = Protagonist.getHumanity();
+        document.getElementById('hud-humanity').textContent = `${h}/${Protagonist.MAX_HUMANITY}`;
+    }
+
+    // --- Reset Progress ---
+    function resetProgress() {
+        if (confirm('Reset all progress? This cannot be undone.')) {
+            SaveSystem.clearAll();
+            Protagonist.reset();
+            buildMenu();
+        }
+    }
+
+    // --- Show Insights ---
+    function showInsights() {
+        const insights = Protagonist.getInsights();
+        if (insights.length === 0) {
+            alert('No insights collected yet. Complete levels to earn insights.');
+            return;
+        }
+        let text = 'COLLECTED INSIGHTS\n\n';
+        insights.forEach(i => {
+            const lvl = LEVELS.find(l => l.num === i.level);
+            text += `[Level ${i.level}: ${lvl ? lvl.title : '?'}]\n"${i.text}"\n\n`;
+        });
+        alert(text);
+    }
+
+    // --- Show Insight Popup (called from levels) ---
+    function showInsightPopup(levelNum, quote, onClose) {
+        // Remove existing
+        document.querySelectorAll('.overlay-bg, .insight-popup').forEach(el => el.remove());
+
+        const bg = document.createElement('div');
+        bg.className = 'overlay-bg';
+
+        const popup = document.createElement('div');
+        popup.className = 'insight-popup';
+
+        const lvl = LEVELS.find(l => l.num === levelNum);
+        popup.innerHTML = `
+            <h3>Insight Collected</h3>
+            <blockquote>"${quote}"</blockquote>
+            <p style="color:var(--text-secondary); margin-bottom:16px; font-size:13px;">
+                — Level ${levelNum}: ${lvl ? lvl.title : ''}
+            </p>
+            <button onclick="closeInsightPopup()">Continue</button>
+        `;
+
+        document.body.appendChild(bg);
+        document.body.appendChild(popup);
+
+        window._insightCloseCallback = onClose;
+    }
+
+    function closeInsightPopup() {
+        document.querySelectorAll('.overlay-bg, .insight-popup').forEach(el => el.remove());
+        if (window._insightCloseCallback) {
+            window._insightCloseCallback();
+            window._insightCloseCallback = null;
+        }
+    }
+
+    // --- Boot ---
+    buildMenu();
+    </script>
+</body>
+</html>
