@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>CODEX DESCENDING — A SlateStarCodex Game</title>
+  <meta name="description" content="A ten-level browser game based on the greatest essays from SlateStarCodex. Each level is a different genre. You are Elua, a spark of human values navigating optimization traps.">
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Prevent flash of white -->
+  <style>html { background: #0a0a0f; }</style>
+</head>
+<body>
+
+<div id="game-container">
+  <!-- Canvas layer (background effects, gameplay) -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- UI Overlay layer -->
+  <div id="ui-layer">
+
+    <!-- ==================== TITLE SCREEN ==================== -->
+    <div id="title-screen" class="screen">
+      <div class="title-main">CODEX DESCENDING</div>
+      <div class="title-sub">
+        Ten levels. Ten essays. Ten ways the world grinds down<br>
+        everything soft and beautiful — and one small light that refuses to go out.
+      </div>
+      <div class="title-prompt">Click anywhere to begin</div>
+      <div class="title-quote">
+        "Somewhere in this darkness is another god. He is the god of flowers and free love
+        and all soft and fragile things."<br>— Scott Alexander
+      </div>
+    </div>
+
+    <!-- ==================== LEVEL SELECT SCREEN ==================== -->
+    <div id="level-select-screen" class="screen">
+      <div class="level-select-title">SELECT YOUR DESCENT</div>
+      <div class="level-grid">
+
+        <!-- Level 1: Moloch -->
+        <div class="level-card" style="--card-accent: #e05020;">
+          <span class="level-number">LEVEL I</span>
+          <span class="level-name">Meditations on Moloch</span>
+          <span class="level-genre">Tower Defense</span>
+          <span class="level-status">AVAILABLE</span>
+        </div>
+
+        <!-- Level 2: Outgroup -->
+        <div class="level-card" style="--card-accent: #7070d0;">
+          <span class="level-number">LEVEL II</span>
+          <span class="level-name">I Can Tolerate Anything Except the Outgroup</span>
+          <span class="level-genre">Social Puzzle</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 3: Toxoplasma -->
+        <div class="level-card" style="--card-accent: #d04040;">
+          <span class="level-number">LEVEL III</span>
+          <span class="level-name">The Toxoplasma of Rage</span>
+          <span class="level-genre">Infection Strategy</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 4: Control Group -->
+        <div class="level-card" style="--card-accent: #40a060;">
+          <span class="level-number">LEVEL IV</span>
+          <span class="level-name">The Control Group Is Out of Control</span>
+          <span class="level-genre">Lab Management</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 5: Commensurable -->
+        <div class="level-card" style="--card-accent: #d0a030;">
+          <span class="level-number">LEVEL V</span>
+          <span class="level-name">Nobody Is Perfect, Everything Is Commensurable</span>
+          <span class="level-genre">Resource Management</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 6: Talents -->
+        <div class="level-card" style="--card-accent: #c07030;">
+          <span class="level-number">LEVEL VI</span>
+          <span class="level-name">The Parable of the Talents</span>
+          <span class="level-genre">RPG / Hidden Stats</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 7: Secret Success -->
+        <div class="level-card" style="--card-accent: #309050;">
+          <span class="level-number">LEVEL VII</span>
+          <span class="level-name">The Secret of Our Success</span>
+          <span class="level-genre">Survival / Mystery</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 8: Motte-Bailey -->
+        <div class="level-card" style="--card-accent: #808080;">
+          <span class="level-number">LEVEL VIII</span>
+          <span class="level-name">All in All, Another Brick in the Motte</span>
+          <span class="level-genre">Debate Strategy</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 9: Conflict vs Mistake -->
+        <div class="level-card" style="--card-accent: #5060c0;">
+          <span class="level-number">LEVEL IX</span>
+          <span class="level-name">Conflict vs. Mistake</span>
+          <span class="level-genre">Dual-Mode Strategy</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+        <!-- Level 10: SSRIs -->
+        <div class="level-card" style="--card-accent: #6080b0;">
+          <span class="level-number">LEVEL X</span>
+          <span class="level-name">SSRIs: Much More Than You Wanted to Know</span>
+          <span class="level-genre">Internal Landscape</span>
+          <span class="level-status">LOCKED</span>
+        </div>
+
+      </div>
+
+      <div style="font-size: 0.65em; color: #4a4a5e; margin-top: 8px; font-family: var(--font-mono);">
+        ESC to return &nbsp;|&nbsp; Ctrl+Shift+U to unlock all levels
+      </div>
+    </div>
+
+    <!-- ==================== LEVEL PREVIEW SCREEN ==================== -->
+    <div id="level-preview-screen" class="screen">
+      <button id="preview-back-btn" class="preview-back">&larr; Back</button>
+      <span id="preview-number" class="preview-number">LEVEL I</span>
+      <h2 id="preview-title" class="preview-title">Meditations on Moloch</h2>
+      <p id="preview-essay" class="preview-essay"></p>
+      <span id="preview-genre" class="preview-genre-badge">Tower Defense</span>
+      <p id="preview-description" class="preview-description"></p>
+      <blockquote id="preview-quote" class="preview-quote"></blockquote>
+      <div id="preview-play-btn" class="preview-status">COMING SOON — IN DEVELOPMENT</div>
+    </div>
+
+    <!-- ==================== HUD (shown during gameplay) ==================== -->
+    <div id="hud">
+      <div class="hud-left">
+        <div>
+          <div class="hud-label">Humanity</div>
+          <div class="humanity-bar">
+            <div class="humanity-bar-fill" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div>
+          <span class="hud-label">Insights</span>
+          <span class="insight-count" id="insight-count">0 / 10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TRANSITION OVERLAY ==================== -->
+    <div id="transition-overlay">
+      <div class="transition-text" id="transition-text"></div>
+    </div>
+
+  </div><!-- /ui-layer -->
+</div><!-- /game-container -->
+
+<!-- Scripts (order matters) -->
+<script src="js/save.js"></script>
+<script src="js/protagonist.js"></script>
+<script src="js/engine.js"></script>
+
+</body>
+</html>
