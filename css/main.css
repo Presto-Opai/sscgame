@@ -1166,6 +1166,472 @@ body {
     margin-bottom: 1em;
 }
 
+/* ======================================
+   LEVEL 5: COMMENSURABLE - Life Resources
+   ====================================== */
+
+#life-ui { pointer-events: auto; }
+
+#life-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    background: linear-gradient(to bottom, rgba(13, 10, 26, 0.9), transparent);
+}
+
+#resource-bars-l5 {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+}
+
+.res-bar-l5 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.res-fill-time { background: linear-gradient(90deg, #40a0c0, #60c0e0); }
+.res-fill-money { background: linear-gradient(90deg, #3a8a4a, #4aaf5a); }
+.res-fill-energy { background: linear-gradient(90deg, #c08030, #e0a040); }
+.res-fill-willpower { background: linear-gradient(90deg, #a050b0, #c060d0); }
+
+#causes-panel {
+    position: absolute;
+    left: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 300px;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+#causes-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    margin-top: 0.4em;
+}
+
+.cause-btn {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--white-soft);
+    background: var(--bg-mid);
+    border: 1px solid var(--purple-dim);
+    padding: 0.5em 0.8em;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.cause-btn:hover {
+    border-color: #4aaf5a;
+    background: rgba(74, 175, 90, 0.1);
+}
+
+.cause-name { flex: 1; }
+.cause-cost { font-size: 0.6rem; color: var(--grey-cold); }
+.cause-qaly { font-size: 0.6rem; color: #4aaf5a; font-weight: 600; }
+
+#demand-scroll {
+    position: absolute;
+    top: 3.5em;
+    left: 1em;
+    pointer-events: none;
+}
+
+.demand-label {
+    font-family: var(--font-serif);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--moloch-orange);
+    opacity: 0.6;
+}
+
+#qaly-display {
+    position: absolute;
+    right: 1em;
+    top: 4em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    min-width: 160px;
+}
+
+.qaly-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+    padding: 0.2em 0;
+    font-size: 0.7rem;
+}
+
+.qaly-label { color: var(--grey-cold); }
+.qaly-value { color: #4aaf5a; font-weight: 600; }
+
+#pledge-panel {
+    position: absolute;
+    right: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 280px;
+}
+
+#pledge-controls {
+    margin-top: 0.4em;
+}
+
+.pledge-label {
+    font-family: var(--font-serif);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: #60c0e0;
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.pledge-desc {
+    font-size: 0.65rem;
+    color: var(--grey-cold);
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+}
+
+.pledge-btn {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    color: var(--white-soft);
+    background: var(--bg-mid);
+    border: 1px solid #60c0e0;
+    padding: 0.35em 0.6em;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.2em;
+    transition: all 0.2s;
+}
+
+.pledge-btn:hover {
+    background: rgba(96, 192, 224, 0.1);
+    border-color: #80d0f0;
+}
+
+.pledge-info-active {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.pledge-detail {
+    font-size: 0.65rem;
+    color: var(--grey-light);
+}
+
+.pledge-detail.qaly-rate {
+    color: #4aaf5a;
+}
+
+/* ======================================
+   LEVEL 6: TALENTS - RPG / Hidden Stats
+   ====================================== */
+
+#talent-ui { pointer-events: auto; }
+
+#talent-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    background: linear-gradient(to bottom, rgba(13, 10, 26, 0.9), transparent);
+}
+
+#talent-phase-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.phase-label {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--gold-warm);
+    letter-spacing: 0.1em;
+}
+
+#talent-feeling {
+    display: flex;
+    gap: 1.5em;
+    flex: 1;
+    justify-content: center;
+}
+
+.feel-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.feel-value {
+    font-family: var(--font-hand);
+    font-size: 0.8rem;
+    color: var(--grey-light);
+}
+
+#task-panel {
+    position: absolute;
+    left: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 340px;
+    min-width: 280px;
+}
+
+#task-content {
+    margin-top: 0.4em;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4em;
+}
+
+.task-name {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--white-soft);
+}
+
+.task-domain {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+}
+
+.task-desc {
+    font-size: 0.7rem;
+    color: var(--grey-cold);
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+}
+
+.task-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-mid);
+    border: 1px solid var(--purple-dim);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.4em 0;
+}
+
+.task-progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+.task-feeling {
+    font-family: var(--font-hand);
+    font-size: 0.8rem;
+    margin: 0.3em 0;
+    font-style: italic;
+}
+
+.task-grind {
+    font-size: 0.6rem;
+    color: var(--grey-cold);
+    margin: 0.3em 0;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 0.4em;
+    margin-top: 0.4em;
+}
+
+.task-btn {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--white-soft);
+    background: var(--bg-mid);
+    border: 1px solid var(--purple-dim);
+    padding: 0.5em 1em;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s;
+}
+
+.task-btn:hover {
+    border-color: var(--gold-warm);
+    background: rgba(232, 197, 71, 0.1);
+}
+
+.task-btn-grind {
+    border-color: #60c0a0;
+}
+
+.task-btn-grind:hover {
+    border-color: #80e0c0;
+    background: rgba(96, 192, 160, 0.1);
+}
+
+.task-result {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: 1px solid rgba(74, 61, 110, 0.3);
+    background: rgba(26, 20, 48, 0.5);
+}
+
+.task-grade {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-width: 2em;
+    text-align: center;
+}
+
+.grade-A { color: #4aaf5a; }
+.grade-Bp { color: #7aafff; }
+.grade-B { color: #60c0a0; }
+.grade-Cp { color: #c0a030; }
+.grade-C { color: #d4a040; }
+.grade-Cm { color: #d07040; }
+.grade-D { color: #d44040; }
+
+.task-feel {
+    font-family: var(--font-hand);
+    font-size: 0.8rem;
+    color: var(--grey-light);
+    line-height: 1.4;
+    font-style: italic;
+}
+
+.task-waiting {
+    font-size: 0.7rem;
+    color: var(--grey-cold);
+    font-style: italic;
+}
+
+/* NPC panel */
+#npc-panel {
+    position: absolute;
+    right: 1em;
+    top: 4em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 250px;
+}
+
+.npc-name {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--gold-warm);
+    margin-bottom: 0.2em;
+}
+
+.npc-talent {
+    font-size: 0.7rem;
+    color: #7aafff;
+    margin-bottom: 0.1em;
+}
+
+.npc-bg {
+    font-size: 0.65rem;
+    color: var(--grey-cold);
+    margin-bottom: 0.4em;
+}
+
+.npc-line {
+    font-family: var(--font-hand);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* Comparison overlay */
+#comparison-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+}
+
+.comparison-content {
+    text-align: center;
+    max-width: 520px;
+    padding: 2em;
+    animation: fadeInUp 1s ease-out;
+    border: 1px solid var(--purple-bright);
+    background: rgba(13, 10, 26, 0.95);
+}
+
+#comparison-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+/* Bargain overlay */
+#bargain-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+}
+
+.bargain-content {
+    text-align: center;
+    max-width: 520px;
+    padding: 2em;
+    animation: fadeInUp 1s ease-out;
+    border: 1px solid var(--gold-dim);
+    background: rgba(13, 10, 26, 0.95);
+}
+
+#bargain-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+.bargain-buttons {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;

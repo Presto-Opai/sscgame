@@ -46,15 +46,15 @@
                     <span class="level-name">The Control Group Is Out of Control</span>
                     <span class="level-genre">Lab Management</span>
                 </button>
-                <button class="level-card locked" data-level="5">
+                <button class="level-card unlocked" data-level="5">
                     <span class="level-number">V</span>
                     <span class="level-name">Nobody Is Perfect, Everything Is Commensurable</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Resource Management</span>
                 </button>
-                <button class="level-card locked" data-level="6">
+                <button class="level-card unlocked" data-level="6">
                     <span class="level-number">VI</span>
                     <span class="level-name">The Parable of the Talents</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">RPG / Hidden Stats</span>
                 </button>
                 <button class="level-card locked" data-level="7">
                     <span class="level-number">VII</span>
@@ -248,6 +248,114 @@
                     </div>
                 </div>
 
+                <!-- Level 5 UI -->
+                <div id="life-ui" style="display:none;">
+                    <div id="life-top-bar">
+                        <div id="resource-bars-l5">
+                            <div class="res-bar-l5">
+                                <span class="bar-label">TIME</span>
+                                <div class="bar-track"><div class="bar-fill res-fill-time" id="res-fill-time"></div></div>
+                                <span id="res-val-time" class="score-value">100</span>
+                            </div>
+                            <div class="res-bar-l5">
+                                <span class="bar-label">MONEY</span>
+                                <div class="bar-track"><div class="bar-fill res-fill-money" id="res-fill-money"></div></div>
+                                <span id="res-val-money" class="score-value">100</span>
+                            </div>
+                            <div class="res-bar-l5">
+                                <span class="bar-label">ENERGY</span>
+                                <div class="bar-track"><div class="bar-fill res-fill-energy" id="res-fill-energy"></div></div>
+                                <span id="res-val-energy" class="score-value">100</span>
+                            </div>
+                            <div class="res-bar-l5">
+                                <span class="bar-label">WILLPOWER</span>
+                                <div class="bar-track"><div class="bar-fill res-fill-willpower" id="res-fill-willpower"></div></div>
+                                <span id="res-val-willpower" class="score-value">100</span>
+                            </div>
+                        </div>
+                        <div id="humanity-bar-l5">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l5"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="causes-panel" style="display:none;">
+                    <span class="panel-title">CAUSES</span>
+                    <div id="causes-buttons"></div>
+                </div>
+                <div id="demand-scroll" style="display:none;">
+                    <!-- Demands render on canvas, this is just a label -->
+                    <span class="demand-label">DEMANDS</span>
+                </div>
+                <div id="qaly-display" style="display:none;">
+                    <div class="qaly-info">
+                        <span class="qaly-label">TOTAL QALYs:</span>
+                        <span id="total-qalys" class="qaly-value">0</span>
+                    </div>
+                    <div class="qaly-info">
+                        <span class="qaly-label">Week:</span>
+                        <span id="week-counter" class="qaly-value">0 / 80</span>
+                    </div>
+                    <div class="qaly-info">
+                        <span class="qaly-label">Sustainable:</span>
+                        <span id="sustain-pct" class="qaly-value">100%</span>
+                    </div>
+                </div>
+                <div id="pledge-panel" style="display:none;">
+                    <span class="panel-title">PLEDGE</span>
+                    <div id="pledge-controls"></div>
+                </div>
+
+                <!-- Level 6 UI -->
+                <div id="talent-ui" style="display:none;">
+                    <div id="talent-top-bar">
+                        <div id="talent-phase-display">
+                            <span class="bar-label">PHASE</span>
+                            <span id="talent-phase" class="phase-label">SCHOOL</span>
+                        </div>
+                        <div id="talent-feeling">
+                            <div class="feel-row">
+                                <span class="bar-label">VERBAL</span>
+                                <span id="feel-verbal" class="feel-value">???</span>
+                            </div>
+                            <div class="feel-row">
+                                <span class="bar-label">QUANTITATIVE</span>
+                                <span id="feel-quantitative" class="feel-value">???</span>
+                            </div>
+                        </div>
+                        <div id="talent-stats-display">
+                            <span class="resource">Tasks: <span id="tasks-completed">0</span></span>
+                        </div>
+                        <div id="humanity-bar-l6">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l6"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="task-panel" style="display:none;">
+                    <span class="panel-title">CURRENT TASK</span>
+                    <div id="task-content"></div>
+                </div>
+                <div id="npc-panel" style="display:none;">
+                    <span class="panel-title">ENCOUNTER</span>
+                    <div id="npc-content"></div>
+                </div>
+                <div id="comparison-overlay" style="display:none;">
+                    <div class="comparison-content">
+                        <p id="comparison-text"></p>
+                        <button id="btn-comparison-accept" class="menu-btn">I UNDERSTAND</button>
+                    </div>
+                </div>
+                <div id="bargain-overlay" style="display:none;">
+                    <div class="bargain-content">
+                        <p id="bargain-text"></p>
+                        <div class="bargain-buttons">
+                            <button id="btn-bargain-grind" class="menu-btn">GRIND THE WEAKNESS</button>
+                            <button id="btn-bargain-strength" class="menu-btn">LEAN INTO STRENGTH</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="message-overlay" style="display:none;">
                     <div id="message-box">
                         <p id="message-text"></p>
@@ -292,6 +400,8 @@
     <script src="js/levels/level02-outgroup.js"></script>
     <script src="js/levels/level03-toxoplasma.js"></script>
     <script src="js/levels/level04-control-group.js"></script>
+    <script src="js/levels/level05-commensurable.js"></script>
+    <script src="js/levels/level06-talents.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();

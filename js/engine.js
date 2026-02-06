@@ -53,6 +53,12 @@ class GameEngine {
         if (typeof Level04ControlGroup !== 'undefined') {
             this.levels[4] = Level04ControlGroup;
         }
+        if (typeof Level05Commensurable !== 'undefined') {
+            this.levels[5] = Level05Commensurable;
+        }
+        if (typeof Level06Talents !== 'undefined') {
+            this.levels[6] = Level06Talents;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -219,6 +225,20 @@ class GameEngine {
         const l4Elements = ['lab-ui', 'study-panel', 'results-panel',
                             'reform-panel', 'funnel-overlay', 'bem-overlay'];
         for (const id of l4Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 5 UI
+        const l5Elements = ['life-ui', 'causes-panel', 'demand-scroll',
+                            'qaly-display', 'pledge-panel'];
+        for (const id of l5Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 6 UI
+        const l6Elements = ['talent-ui', 'task-panel', 'npc-panel',
+                            'comparison-overlay', 'bargain-overlay'];
+        for (const id of l6Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }
