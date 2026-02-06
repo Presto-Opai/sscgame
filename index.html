@@ -36,15 +36,15 @@
                     <span class="level-name">I Can Tolerate Anything Except the Outgroup</span>
                     <span class="level-genre">Social Puzzle</span>
                 </button>
-                <button class="level-card locked" data-level="3">
+                <button class="level-card unlocked" data-level="3">
                     <span class="level-number">III</span>
                     <span class="level-name">The Toxoplasma of Rage</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Infection Strategy</span>
                 </button>
-                <button class="level-card locked" data-level="4">
+                <button class="level-card unlocked" data-level="4">
                     <span class="level-number">IV</span>
                     <span class="level-name">The Control Group Is Out of Control</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Lab Management</span>
                 </button>
                 <button class="level-card locked" data-level="5">
                     <span class="level-number">V</span>
@@ -175,6 +175,79 @@
                     <p id="bodhidharma-text"></p>
                 </div>
 
+                <!-- Level 3 UI -->
+                <div id="network-ui" style="display:none;">
+                    <div id="network-top-bar">
+                        <div id="infection-bar">
+                            <span class="bar-label">INFECTION</span>
+                            <div class="bar-track"><div class="bar-fill infection-fill" id="infection-fill"></div></div>
+                            <span id="infection-pct" class="score-value">0%</span>
+                        </div>
+                        <div id="network-stats-display">
+                            <span id="rage-display" class="resource">Rage: 0</span>
+                            <span id="good-display" class="resource">Good: 0</span>
+                            <span id="spread-display" class="resource">Spread: x1.0</span>
+                        </div>
+                        <div id="humanity-bar-l3">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l3"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="case-panel" style="display:none;">
+                    <span class="panel-title">CHOOSE YOUR CASE</span>
+                    <div id="case-buttons"></div>
+                </div>
+                <div id="infection-stats" style="display:none;">
+                    <div id="infection-breakdown"></div>
+                </div>
+                <div id="chain-letter-overlay" style="display:none;">
+                    <p id="chain-letter-text"></p>
+                </div>
+
+                <!-- Level 4 UI -->
+                <div id="lab-ui" style="display:none;">
+                    <div id="lab-top-bar">
+                        <div id="prestige-bar">
+                            <span class="bar-label">PRESTIGE</span>
+                            <div class="bar-track"><div class="bar-fill prestige-fill" id="prestige-fill"></div></div>
+                            <span id="prestige-value" class="score-value">50</span>
+                        </div>
+                        <div id="lab-stats-display">
+                            <span id="funding-display" class="resource">Funding: 100</span>
+                            <span id="publications-display" class="resource">Published: 0</span>
+                            <span id="rigor-display" class="resource">Rigor: 50</span>
+                        </div>
+                        <div id="humanity-bar-l4">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l4"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="study-panel" style="display:none;">
+                    <span class="panel-title">DESIGN STUDY</span>
+                    <div id="study-controls"></div>
+                </div>
+                <div id="results-panel" style="display:none;">
+                    <span class="panel-title">RESULTS</span>
+                    <div id="results-content"></div>
+                </div>
+                <div id="reform-panel" style="display:none;">
+                    <span class="panel-title">REFORMS</span>
+                    <div id="reform-buttons"></div>
+                </div>
+                <div id="funnel-overlay" style="display:none;">
+                    <canvas id="funnel-canvas" width="300" height="250"></canvas>
+                    <p id="funnel-text"></p>
+                </div>
+                <div id="bem-overlay" style="display:none;">
+                    <div class="bem-content">
+                        <h2 id="bem-title"></h2>
+                        <p id="bem-text"></p>
+                        <button id="bem-dismiss" class="menu-btn">CONTINUE</button>
+                    </div>
+                </div>
+
                 <div id="message-overlay" style="display:none;">
                     <div id="message-box">
                         <p id="message-text"></p>
@@ -217,6 +290,8 @@
     <script src="js/engine.js"></script>
     <script src="js/levels/level01-moloch.js"></script>
     <script src="js/levels/level02-outgroup.js"></script>
+    <script src="js/levels/level03-toxoplasma.js"></script>
+    <script src="js/levels/level04-control-group.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();

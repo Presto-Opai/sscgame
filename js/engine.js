@@ -47,6 +47,12 @@ class GameEngine {
         if (typeof Level02Outgroup !== 'undefined') {
             this.levels[2] = Level02Outgroup;
         }
+        if (typeof Level03Toxoplasma !== 'undefined') {
+            this.levels[3] = Level03Toxoplasma;
+        }
+        if (typeof Level04ControlGroup !== 'undefined') {
+            this.levels[4] = Level04ControlGroup;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -199,6 +205,20 @@ class GameEngine {
         const l2Elements = ['dinner-ui', 'speech-panel', 'guest-info-panel',
                             'tolerance-display', 'mirror-overlay', 'bodhidharma-overlay'];
         for (const id of l2Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 3 UI
+        const l3Elements = ['network-ui', 'case-panel', 'infection-stats',
+                            'chain-letter-overlay'];
+        for (const id of l3Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 4 UI
+        const l4Elements = ['lab-ui', 'study-panel', 'results-panel',
+                            'reform-panel', 'funnel-overlay', 'bem-overlay'];
+        for (const id of l4Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }
