@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODEX DESCENDING</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Title Screen -->
+        <div id="title-screen" class="screen active">
+            <div class="title-content">
+                <h1 class="game-title">CODEX DESCENDING</h1>
+                <p class="subtitle">A game based on SlateStarCodex</p>
+                <div class="elua-glow"></div>
+                <div class="menu-buttons">
+                    <button id="btn-play" class="menu-btn">BEGIN DESCENT</button>
+                    <button id="btn-continue" class="menu-btn" style="display:none;">CONTINUE</button>
+                </div>
+                <p class="quote">"Somewhere in this darkness is another god.<br>He is the god of flowers and free love and all soft and fragile things."</p>
+            </div>
+        </div>
+
+        <!-- Level Select Screen -->
+        <div id="level-select" class="screen">
+            <h2>SELECT LEVEL</h2>
+            <div class="level-grid">
+                <button class="level-card unlocked" data-level="1">
+                    <span class="level-number">I</span>
+                    <span class="level-name">Meditations on Moloch</span>
+                    <span class="level-genre">Tower Defense</span>
+                </button>
+                <button class="level-card locked" data-level="2">
+                    <span class="level-number">II</span>
+                    <span class="level-name">I Can Tolerate Anything Except the Outgroup</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="3">
+                    <span class="level-number">III</span>
+                    <span class="level-name">The Toxoplasma of Rage</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="4">
+                    <span class="level-number">IV</span>
+                    <span class="level-name">The Control Group Is Out of Control</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="5">
+                    <span class="level-number">V</span>
+                    <span class="level-name">Nobody Is Perfect, Everything Is Commensurable</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="6">
+                    <span class="level-number">VI</span>
+                    <span class="level-name">The Parable of the Talents</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="7">
+                    <span class="level-number">VII</span>
+                    <span class="level-name">The Secret of Our Success</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="8">
+                    <span class="level-number">VIII</span>
+                    <span class="level-name">All In All, Another Brick in the Motte</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="9">
+                    <span class="level-number">IX</span>
+                    <span class="level-name">Conflict vs. Mistake</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+                <button class="level-card locked" data-level="10">
+                    <span class="level-number">X</span>
+                    <span class="level-name">SSRIs: Much More Than You Wanted to Know</span>
+                    <span class="level-genre">Coming Soon</span>
+                </button>
+            </div>
+            <button id="btn-back-title" class="menu-btn">BACK</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <canvas id="game-canvas"></canvas>
+            <div id="game-ui">
+                <div id="top-bar">
+                    <div id="humanity-bar">
+                        <span class="bar-label">HUMANITY</span>
+                        <div class="bar-track"><div class="bar-fill" id="humanity-fill"></div></div>
+                    </div>
+                    <div id="resource-display">
+                        <span id="res-food" class="resource">Food: 0</span>
+                        <span id="res-culture" class="resource">Culture: 0</span>
+                        <span id="res-knowledge" class="resource">Knowledge: 0</span>
+                        <span id="res-population" class="resource">Pop: 0</span>
+                    </div>
+                    <div id="moloch-meter">
+                        <span class="bar-label">MOLOCH</span>
+                        <div class="bar-track moloch-track"><div class="bar-fill moloch-fill" id="moloch-fill"></div></div>
+                    </div>
+                </div>
+                <div id="build-panel">
+                    <span class="panel-title">BUILD</span>
+                    <button class="build-btn" data-building="house" title="House - Shelters citizens">
+                        <span class="build-icon">&#9750;</span>
+                        <span class="build-name">House</span>
+                    </button>
+                    <button class="build-btn" data-building="farm" title="Farm - Produces food">
+                        <span class="build-icon">&#9752;</span>
+                        <span class="build-name">Farm</span>
+                    </button>
+                    <button class="build-btn" data-building="school" title="School - Generates knowledge">
+                        <span class="build-icon">&#9734;</span>
+                        <span class="build-name">School</span>
+                    </button>
+                    <button class="build-btn" data-building="art_studio" title="Art Studio - Creates culture">
+                        <span class="build-icon">&#9835;</span>
+                        <span class="build-name">Art Studio</span>
+                    </button>
+                    <button class="build-btn" data-building="garden" title="Garden - Requires coordination of 5 buildings" disabled>
+                        <span class="build-icon">&#10047;</span>
+                        <span class="build-name">Garden</span>
+                    </button>
+                </div>
+                <div id="action-panel" style="display:none;">
+                    <span class="panel-title" id="action-title">Building</span>
+                    <div id="action-buttons"></div>
+                </div>
+                <div id="coordination-panel" style="display:none;">
+                    <span class="panel-title">COORDINATION</span>
+                    <p id="coord-info">Link buildings to resist Moloch. Select two buildings to link.</p>
+                    <button id="btn-link" class="action-btn">Link Buildings</button>
+                    <span id="coord-timer" style="display:none;">Garden Timer: <span id="garden-time">0</span>s / 60s</span>
+                </div>
+                <div id="message-overlay" style="display:none;">
+                    <div id="message-box">
+                        <p id="message-text"></p>
+                        <button id="message-dismiss" class="menu-btn">OK</button>
+                    </div>
+                </div>
+                <div id="ginsberg-overlay" style="display:none;">
+                    <p id="ginsberg-text"></p>
+                </div>
+                <div id="dream-time-indicator" style="display:none;">
+                    <span>&#10022; THE DREAM TIME &#10022;</span>
+                </div>
+                <button id="btn-pause" class="ui-btn">&#10074;&#10074;</button>
+            </div>
+            <!-- Pause overlay -->
+            <div id="pause-overlay" style="display:none;">
+                <div class="pause-menu">
+                    <h2>PAUSED</h2>
+                    <button id="btn-resume" class="menu-btn">RESUME</button>
+                    <button id="btn-quit-level" class="menu-btn">QUIT TO MENU</button>
+                </div>
+            </div>
+            <!-- Win/Lose overlay -->
+            <div id="end-overlay" style="display:none;">
+                <div class="end-content">
+                    <h2 id="end-title"></h2>
+                    <p id="end-text"></p>
+                    <div id="insight-unlock" style="display:none;">
+                        <p class="insight-label">INSIGHT COLLECTED</p>
+                        <p id="insight-quote" class="insight-text"></p>
+                    </div>
+                    <button id="btn-end-menu" class="menu-btn">RETURN TO MENU</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/save.js"></script>
+    <script src="js/protagonist.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/levels/level01-moloch.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const engine = new GameEngine();
+            engine.init();
+        });
+    </script>
+</body>
+</html>
