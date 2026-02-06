@@ -44,6 +44,9 @@ class GameEngine {
         if (typeof Level01Moloch !== 'undefined') {
             this.levels[1] = Level01Moloch;
         }
+        if (typeof Level02Outgroup !== 'undefined') {
+            this.levels[2] = Level02Outgroup;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -157,6 +160,11 @@ class GameEngine {
         const LevelClass = this.levels[levelNum];
         if (!LevelClass) return;
 
+        this.currentLevelNum = levelNum;
+
+        // Hide all level-specific UI before starting
+        this.hideAllLevelUI();
+
         this.showScreen('game-screen');
         this.currentLevel = new LevelClass(this);
         this.currentLevel.init();
@@ -166,16 +174,34 @@ class GameEngine {
     }
 
     quitLevel() {
+        if (this.currentLevel && this.currentLevel.cleanup) {
+            this.currentLevel.cleanup();
+        }
         this.currentLevel = null;
+        this.currentLevelNum = null;
         this.paused = false;
         document.getElementById('pause-overlay').style.display = 'none';
         document.getElementById('end-overlay').style.display = 'none';
         document.getElementById('message-overlay').style.display = 'none';
-        document.getElementById('ginsberg-overlay').style.display = 'none';
-        document.getElementById('dream-time-indicator').style.display = 'none';
-        document.getElementById('action-panel').style.display = 'none';
-        document.getElementById('coordination-panel').style.display = 'none';
+        this.hideAllLevelUI();
         this.showScreen('level-select');
+    }
+
+    hideAllLevelUI() {
+        // Level 1 UI
+        const l1Elements = ['ginsberg-overlay', 'dream-time-indicator', 'action-panel',
+                            'coordination-panel', 'build-panel', 'top-bar'];
+        for (const id of l1Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 2 UI
+        const l2Elements = ['dinner-ui', 'speech-panel', 'guest-info-panel',
+                            'tolerance-display', 'mirror-overlay', 'bodhidharma-overlay'];
+        for (const id of l2Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
     }
 
     togglePause() {
@@ -256,7 +282,7 @@ class GameEngine {
         if (insight) {
             document.getElementById('insight-unlock').style.display = 'block';
             document.getElementById('insight-quote').textContent = insight;
-            SaveManager.completeLevel(1, insight, isHidden);
+            SaveManager.completeLevel(this.currentLevelNum || 1, insight, isHidden);
         } else {
             document.getElementById('insight-unlock').style.display = 'none';
         }

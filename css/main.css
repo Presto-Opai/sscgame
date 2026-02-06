@@ -615,6 +615,242 @@ body {
     50% { opacity: 1; }
 }
 
+/* ======================================
+   LEVEL 2: OUTGROUP - Dinner Party UI
+   ====================================== */
+
+#dinner-ui {
+    pointer-events: auto;
+}
+
+#dinner-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    background: linear-gradient(to bottom, rgba(13, 10, 26, 0.9), transparent);
+}
+
+.tolerance-fill {
+    background: linear-gradient(90deg, #5a7adf, #7aafff);
+    width: 0%;
+}
+
+.score-value {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--white-soft);
+    margin-left: 0.5em;
+}
+
+/* Guest info panel */
+#guest-info-panel {
+    position: absolute;
+    right: 1em;
+    top: 4em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    min-width: 200px;
+    max-width: 260px;
+}
+
+#guest-info-content {
+    font-size: 0.7rem;
+    color: var(--grey-light);
+    line-height: 1.5;
+    margin-top: 0.4em;
+}
+
+#guest-info-content .tribe-tag {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    margin: 0.2em 0;
+    letter-spacing: 0.05em;
+}
+
+#guest-info-content .belief-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.15em 0;
+    border-bottom: 1px solid rgba(74, 61, 110, 0.3);
+}
+
+#guest-info-content .belief-hidden {
+    color: var(--purple-dim);
+    font-style: italic;
+}
+
+#guest-info-content .marker-list {
+    color: var(--grey-cold);
+    font-size: 0.65rem;
+    margin-top: 0.3em;
+}
+
+/* Speech panel */
+#speech-panel {
+    position: absolute;
+    left: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 280px;
+}
+
+#speech-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    margin-top: 0.4em;
+}
+
+.speech-btn {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--white-soft);
+    background: var(--bg-mid);
+    border: 1px solid var(--purple-dim);
+    padding: 0.4em 0.8em;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.speech-btn:hover {
+    border-color: var(--culture-blue);
+    background: rgba(90, 122, 223, 0.1);
+}
+
+.speech-btn.used {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.speech-feedback {
+    font-family: var(--font-hand);
+    font-size: 0.85rem;
+    color: var(--gold-warm);
+    margin-top: 0.5em;
+    min-height: 1.2em;
+    font-style: italic;
+}
+
+/* Tolerance display */
+#tolerance-display {
+    position: absolute;
+    right: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 240px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#tolerance-breakdown {
+    font-size: 0.65rem;
+    color: var(--grey-light);
+    line-height: 1.6;
+}
+
+.tol-pair {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.15em 0;
+    border-bottom: 1px solid rgba(74, 61, 110, 0.2);
+}
+
+.tol-good { color: #4aaf5a; }
+.tol-ok { color: #c0a030; }
+.tol-bad { color: #d44040; }
+.tol-explosive { color: #ff2020; font-weight: 600; }
+
+/* Mirror overlay */
+#mirror-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+}
+
+.mirror-content {
+    text-align: center;
+    max-width: 520px;
+    padding: 2em;
+    animation: fadeInUp 1s ease-out;
+    border: 1px solid var(--culture-blue);
+    background: rgba(13, 10, 26, 0.95);
+}
+
+#mirror-title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--culture-blue);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8em;
+}
+
+#mirror-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+#mirror-stats {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--white-soft);
+    text-align: left;
+    margin: 1em auto;
+    max-width: 300px;
+    line-height: 1.8;
+}
+
+.mirror-stat-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(90, 122, 223, 0.2);
+    padding: 0.2em 0;
+}
+
+/* Bodhidharma overlay */
+#bodhidharma-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 50;
+}
+
+#bodhidharma-text {
+    font-family: var(--font-hand);
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    color: var(--culture-blue);
+    text-shadow: 0 0 20px rgba(90, 122, 223, 0.4);
+    text-align: center;
+    max-width: 80%;
+    animation: bodhidharmaFade 3.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes bodhidharmaFade {
+    0% { opacity: 0; transform: translateY(10px); }
+    15% { opacity: 1; transform: translateY(0); }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;

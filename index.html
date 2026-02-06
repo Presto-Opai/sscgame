@@ -31,10 +31,10 @@
                     <span class="level-name">Meditations on Moloch</span>
                     <span class="level-genre">Tower Defense</span>
                 </button>
-                <button class="level-card locked" data-level="2">
+                <button class="level-card unlocked" data-level="2">
                     <span class="level-number">II</span>
                     <span class="level-name">I Can Tolerate Anything Except the Outgroup</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Social Puzzle</span>
                 </button>
                 <button class="level-card locked" data-level="3">
                     <span class="level-number">III</span>
@@ -133,6 +133,48 @@
                     <button id="btn-link" class="action-btn">Link Buildings</button>
                     <span id="coord-timer" style="display:none;">Garden Timer: <span id="garden-time">0</span>s / 60s</span>
                 </div>
+                <!-- Level 2 UI -->
+                <div id="dinner-ui" style="display:none;">
+                    <div id="dinner-top-bar">
+                        <div id="tolerance-score-bar">
+                            <span class="bar-label">TOLERANCE</span>
+                            <div class="bar-track"><div class="bar-fill tolerance-fill" id="tolerance-fill"></div></div>
+                            <span id="tolerance-value" class="score-value">0</span>
+                        </div>
+                        <div id="dinner-progress">
+                            <span id="round-display" class="resource">Round: 1 / 5</span>
+                            <span id="guests-seated-display" class="resource">Seated: 0 / 0</span>
+                        </div>
+                        <div id="humanity-bar-l2">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l2"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="guest-info-panel" style="display:none;">
+                    <span class="panel-title" id="guest-info-title">Guest</span>
+                    <div id="guest-info-content"></div>
+                </div>
+                <div id="speech-panel" style="display:none;">
+                    <span class="panel-title">GIVE A SPEECH</span>
+                    <div id="speech-buttons"></div>
+                    <p id="speech-feedback" class="speech-feedback"></p>
+                </div>
+                <div id="tolerance-display" style="display:none;">
+                    <div id="tolerance-breakdown"></div>
+                </div>
+                <div id="mirror-overlay" style="display:none;">
+                    <div class="mirror-content">
+                        <h2 id="mirror-title">THE MIRROR</h2>
+                        <p id="mirror-text"></p>
+                        <div id="mirror-stats"></div>
+                        <button id="mirror-dismiss" class="menu-btn">I SEE</button>
+                    </div>
+                </div>
+                <div id="bodhidharma-overlay" style="display:none;">
+                    <p id="bodhidharma-text"></p>
+                </div>
+
                 <div id="message-overlay" style="display:none;">
                     <div id="message-box">
                         <p id="message-text"></p>
@@ -174,6 +216,7 @@
     <script src="js/protagonist.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/levels/level01-moloch.js"></script>
+    <script src="js/levels/level02-outgroup.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();

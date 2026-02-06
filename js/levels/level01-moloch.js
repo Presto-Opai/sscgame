@@ -122,6 +122,10 @@ class Level01Moloch {
         this.particles = [];
         this.casinoSpawned = false;
 
+        // Show Level 1 UI
+        document.getElementById('top-bar').style.display = 'flex';
+        document.getElementById('build-panel').style.display = 'flex';
+
         // Setup UI
         this.setupBuildButtons();
         this.setupActionPanel();
@@ -1723,5 +1727,18 @@ class Level01Moloch {
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.restore();
+    }
+
+    // ===============================
+    //  CLEANUP
+    // ===============================
+
+    cleanup() {
+        document.getElementById('top-bar').style.display = 'none';
+        document.getElementById('build-panel').style.display = 'none';
+        document.getElementById('action-panel').style.display = 'none';
+        document.getElementById('coordination-panel').style.display = 'none';
+        document.getElementById('ginsberg-overlay').style.display = 'none';
+        document.getElementById('dream-time-indicator').style.display = 'none';
     }
 }
