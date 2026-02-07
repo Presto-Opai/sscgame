@@ -339,10 +339,11 @@ class Level04ControlGroup {
         };
 
         // Animate study running
-        const runInterval = setInterval(() => {
+        this._runInterval = setInterval(() => {
             this.studyProgress += 0.02;
             if (this.studyProgress >= 1) {
-                clearInterval(runInterval);
+                clearInterval(this._runInterval);
+                this._runInterval = null;
                 this.studyRunning = false;
                 this.completedStudies.push(this.currentStudy);
                 this.updateResultsPanel();
@@ -922,6 +923,10 @@ class Level04ControlGroup {
     // ===============================
 
     cleanup() {
+        if (this._runInterval) {
+            clearInterval(this._runInterval);
+            this._runInterval = null;
+        }
         document.getElementById('lab-ui').style.display = 'none';
         document.getElementById('study-panel').style.display = 'none';
         document.getElementById('results-panel').style.display = 'none';

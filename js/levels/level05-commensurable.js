@@ -443,6 +443,10 @@ class Level05Commensurable {
             if (this.paralysisTimer <= 0) this.paralyzed = false;
         }
 
+        // Visual timers (Third Servant + Commensurability fade)
+        if (this.thirdServantTimer > 0) this.thirdServantTimer -= dt;
+        if (this.commensurableTimer > 0) this.commensurableTimer -= dt;
+
         // Demand spawning
         this.demandTimer += dt;
         if (this.demandTimer >= this.demandInterval && this.demands.length < 5) {
@@ -596,7 +600,6 @@ class Level05Commensurable {
 
         // Third Servant visual
         if (this.thirdServantTimer > 0) {
-            this.thirdServantTimer -= 0.016;
             ctx.save();
             ctx.globalAlpha = Math.min(1, this.thirdServantTimer / 2);
             ctx.fillStyle = '#8a8a9a';
@@ -608,7 +611,6 @@ class Level05Commensurable {
 
         // Commensurability visual
         if (this.commensurableTimer > 0) {
-            this.commensurableTimer -= 0.016;
             ctx.save();
             ctx.globalAlpha = Math.min(1, this.commensurableTimer / 2) * 0.6;
             ctx.fillStyle = '#60c0e0';

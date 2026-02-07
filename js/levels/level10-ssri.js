@@ -478,14 +478,8 @@ class Level10SSRI {
                 'Do you eat it?' :
                 'This is safe to eat.'),
             () => {
-                if (food.forbidden) {
-                    // The food was forbidden — eating it would be dangerous
-                    // For now, we assume the player reads the warning and declines
-                    // (The message system doesn't support branching, so we note it)
-                    this.foodLog.push({ day: this.day, food: food.name, safe: true });
-                } else {
-                    this.foodLog.push({ day: this.day, food: food.name, safe: true });
-                }
+                // Player saw the warning; forbidden items are declined, safe items consumed
+                this.foodLog.push({ day: this.day, food: food.name, safe: !food.forbidden });
             }
         );
     }
@@ -538,9 +532,9 @@ class Level10SSRI {
                 `The sun didn\'t come out. But the sky is lighter. The gravity is less. ` +
                 `You got out of bed today without it feeling like a heroic act.<br><br>` +
                 `This is not a triumphant ending. It\'s a realistic one.<br><br>` +
-                `<em>"This medication has an effect size of approximately 0.3. You are slightly better. ' +
-                'That slight improvement may be the difference between living and not living. ' +
-                'That is enough."</em>`;
+                `<em>"This medication has an effect size of approximately 0.3. You are slightly better. ` +
+                `That slight improvement may be the difference between living and not living. ` +
+                `That is enough."</em>`;
             insight = '"0.3 standard deviations. The grey became slightly lighter grey. That was enough."';
             this.elua.adjustHumanity(10);
         } else if (functional) {

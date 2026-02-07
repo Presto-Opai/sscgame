@@ -417,10 +417,10 @@ class Level09ConflictMistake {
             text = `You correctly framed ${this.correctFrames} out of ${total} scenarios.<br><br>` +
                 `Mistake uses: ${mistakeUses}. Conflict uses: ${conflictUses}.<br>` +
                 `Evidence: ${Math.round(this.evidence)}. Power: ${Math.round(this.factionPower)}. Trust: ${Math.round(this.publicTrust)}.<br><br>` +
-                `You understood the core insight: <em>some situations are genuinely mistakes</em> ' +
-                '(where cooperation helps everyone) <em>and some are genuinely conflicts</em> ' +
-                '(where interests truly oppose). The wisdom is knowing which is which.<br><br>' +
-                '<em>Both frames are partial. Neither is wrong. The error is applying one universally.</em>';
+                `You understood the core insight: <em>some situations are genuinely mistakes</em> ` +
+                `(where cooperation helps everyone) <em>and some are genuinely conflicts</em> ` +
+                `(where interests truly oppose). The wisdom is knowing which is which.<br><br>` +
+                `<em>Both frames are partial. Neither is wrong. The error is applying one universally.</em>`;
             insight = '"The mistake theorist and the conflict theorist are both right — about different things. Wisdom is knowing which frame fits."';
             this.elua.adjustHumanity(15);
         } else if (mistakeUses >= 4 && this.mistakeFails >= 2) {
@@ -432,8 +432,8 @@ class Level09ConflictMistake {
                 `But some opponents weren\'t confused — they were adversaries.<br><br>` +
                 `Insurance lobbyists didn\'t need more data. Fossil fuel executives didn\'t need more studies. ` +
                 `They needed to be defeated.<br><br>` +
-                `<em>"Mistake theorists think their opponents are smart people with wrong ideas." ' +
-                'Sometimes that\'s true. Sometimes they\'re just protecting their interests.</em>';
+                `<em>"Mistake theorists think their opponents are smart people with wrong ideas." ` +
+                `Sometimes that's true. Sometimes they're just protecting their interests.</em>`;
             insight = '"If you\'re a mistake theorist in a conflict situation, you get exploited. Good faith requires a partner."';
             this.elua.adjustHumanity(5);
         } else if (conflictUses >= 4 && this.conflictFails >= 2) {
@@ -444,8 +444,8 @@ class Level09ConflictMistake {
                 `You treated every problem as a war. Build power. Defeat enemies. Win.<br><br>` +
                 `But some of your "enemies" weren\'t enemies at all — they were confused allies, ` +
                 `people who would have cooperated if you hadn\'t attacked them first.<br><br>` +
-                `<em>"Conflict theorists think their opponents are bad people with selfish interests." ' +
-                'Sometimes. But sometimes they\'re just people who disagree.</em>';
+                `<em>"Conflict theorists think their opponents are bad people with selfish interests." ` +
+                `Sometimes. But sometimes they're just people who disagree.</em>`;
             insight = '"If you\'re a conflict theorist in a mistake situation, you prevent cooperation. Not every disagreement is a war."';
             this.elua.adjustHumanity(3);
         } else {
