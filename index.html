@@ -61,10 +61,10 @@
                     <span class="level-name">The Secret of Our Success</span>
                     <span class="level-genre">Survival / Mystery</span>
                 </button>
-                <button class="level-card locked" data-level="8">
+                <button class="level-card unlocked" data-level="8">
                     <span class="level-number">VIII</span>
                     <span class="level-name">All In All, Another Brick in the Motte</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Debate / Rhetoric</span>
                 </button>
                 <button class="level-card locked" data-level="9">
                     <span class="level-number">IX</span>
@@ -245,6 +245,58 @@
                         <h2 id="bem-title"></h2>
                         <p id="bem-text"></p>
                         <button id="bem-dismiss" class="menu-btn">CONTINUE</button>
+                    </div>
+                </div>
+
+                <!-- Level 8 UI -->
+                <div id="motte-ui" style="display:none;">
+                    <div id="motte-top-bar">
+                        <div class="motte-stat">
+                            <span class="bar-label">INFLUENCE</span>
+                            <div class="bar-track"><div class="bar-fill motte-influence-fill" id="motte-influence-fill"></div></div>
+                            <span id="motte-influence-val" class="score-value">50</span>
+                        </div>
+                        <div class="motte-stat">
+                            <span class="bar-label">CREDIBILITY</span>
+                            <div class="bar-track"><div class="bar-fill motte-cred-fill" id="motte-cred-fill"></div></div>
+                            <span id="motte-cred-val" class="score-value">70</span>
+                        </div>
+                        <div id="motte-info">
+                            <span id="motte-round" class="resource">Round 1 / 5</span>
+                            <span id="castle-info" class="resource">Bailey: 0/8 | Motte: 0/3</span>
+                        </div>
+                        <div id="humanity-bar-l8">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l8"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="claims-panel" style="display:none;">
+                    <span class="panel-title">CLAIMS ARSENAL</span>
+                    <div id="claims-buttons"></div>
+                </div>
+                <div id="debate-log-panel" style="display:none;">
+                    <span class="panel-title">DEBATE LOG</span>
+                    <div id="debate-log-content"></div>
+                </div>
+                <div id="opponent-panel" style="display:none;">
+                    <span class="panel-title">OPPONENT</span>
+                    <div class="opponent-info">
+                        <span id="opponent-name" class="opponent-name"></span>
+                        <span id="opponent-desc" class="opponent-desc"></span>
+                    </div>
+                </div>
+                <div id="debate-choice-overlay" style="display:none;">
+                    <div class="debate-choice-content">
+                        <h3 id="debate-choice-title"></h3>
+                        <p id="debate-choice-claim"></p>
+                        <div id="debate-choice-buttons"></div>
+                    </div>
+                </div>
+                <div id="attack-choice-overlay" style="display:none;">
+                    <div class="debate-choice-content">
+                        <h3 id="attack-choice-title"></h3>
+                        <div id="attack-choice-buttons"></div>
                     </div>
                 </div>
 
@@ -448,6 +500,7 @@
     <script src="js/levels/level05-commensurable.js"></script>
     <script src="js/levels/level06-talents.js"></script>
     <script src="js/levels/level07-secret-success.js"></script>
+    <script src="js/levels/level08-motte-bailey.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();

@@ -62,6 +62,9 @@ class GameEngine {
         if (typeof Level07SecretSuccess !== 'undefined') {
             this.levels[7] = Level07SecretSuccess;
         }
+        if (typeof Level08MotteBailey !== 'undefined') {
+            this.levels[8] = Level08MotteBailey;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -249,6 +252,13 @@ class GameEngine {
         const l7Elements = ['survival-ui', 'scenario-panel', 'tradition-panel',
                             'explorer-overlay'];
         for (const id of l7Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 8 UI
+        const l8Elements = ['motte-ui', 'claims-panel', 'debate-log-panel',
+                            'opponent-panel', 'debate-choice-overlay', 'attack-choice-overlay'];
+        for (const id of l8Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }
