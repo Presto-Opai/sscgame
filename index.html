@@ -56,10 +56,10 @@
                     <span class="level-name">The Parable of the Talents</span>
                     <span class="level-genre">RPG / Hidden Stats</span>
                 </button>
-                <button class="level-card locked" data-level="7">
+                <button class="level-card unlocked" data-level="7">
                     <span class="level-number">VII</span>
                     <span class="level-name">The Secret of Our Success</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Survival / Mystery</span>
                 </button>
                 <button class="level-card locked" data-level="8">
                     <span class="level-number">VIII</span>
@@ -248,6 +248,51 @@
                     </div>
                 </div>
 
+                <!-- Level 7 UI -->
+                <div id="survival-ui" style="display:none;">
+                    <div id="survival-top-bar">
+                        <div class="survival-stat">
+                            <span class="bar-label">HEALTH</span>
+                            <div class="bar-track"><div class="bar-fill survival-health-fill" id="survival-health-fill"></div></div>
+                        </div>
+                        <div class="survival-stat">
+                            <span class="bar-label">HUNGER</span>
+                            <div class="bar-track"><div class="bar-fill survival-hunger-fill" id="survival-hunger-fill"></div></div>
+                        </div>
+                        <div class="survival-stat">
+                            <span class="bar-label">WARMTH</span>
+                            <div class="bar-track"><div class="bar-fill survival-warmth-fill" id="survival-warmth-fill"></div></div>
+                        </div>
+                        <div class="survival-stat">
+                            <span class="bar-label">LOCAL TRUST</span>
+                            <div class="bar-track"><div class="bar-fill survival-trust-fill" id="survival-trust-fill"></div></div>
+                        </div>
+                        <div id="survival-info">
+                            <span id="survival-day" class="resource">Day 0 / 40</span>
+                            <span class="resource">Culture: <span id="survival-culture">0</span></span>
+                        </div>
+                        <div id="humanity-bar-l7">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l7"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scenario-panel" style="display:none;">
+                    <span class="panel-title" id="scenario-title">WAITING...</span>
+                    <p id="scenario-text">Observing the locals...</p>
+                    <div id="scenario-choices"></div>
+                </div>
+                <div id="tradition-panel" style="display:none;">
+                    <span class="panel-title">ADOPTED TRADITIONS</span>
+                    <div id="tradition-list"></div>
+                </div>
+                <div id="explorer-overlay" style="display:none;">
+                    <div class="explorer-content">
+                        <p id="explorer-text"></p>
+                        <button id="btn-explorer-dismiss" class="menu-btn">CONTINUE</button>
+                    </div>
+                </div>
+
                 <!-- Level 5 UI -->
                 <div id="life-ui" style="display:none;">
                     <div id="life-top-bar">
@@ -402,6 +447,7 @@
     <script src="js/levels/level04-control-group.js"></script>
     <script src="js/levels/level05-commensurable.js"></script>
     <script src="js/levels/level06-talents.js"></script>
+    <script src="js/levels/level07-secret-success.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();

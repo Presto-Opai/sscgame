@@ -1167,6 +1167,148 @@ body {
 }
 
 /* ======================================
+   LEVEL 7: SECRET SUCCESS - Survival UI
+   ====================================== */
+
+#survival-ui { pointer-events: auto; }
+
+#survival-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    background: linear-gradient(to bottom, rgba(13, 10, 26, 0.9), transparent);
+    flex-wrap: wrap;
+}
+
+.survival-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.survival-health-fill {
+    background: linear-gradient(90deg, #3a8a4a, #4aaf5a);
+}
+
+.survival-hunger-fill {
+    background: linear-gradient(90deg, #c08030, #e0a040);
+    width: 0%;
+}
+
+.survival-warmth-fill {
+    background: linear-gradient(90deg, #40a0c0, #80d0f0);
+}
+
+.survival-trust-fill {
+    background: linear-gradient(90deg, #5a7adf, #7aafff);
+    width: 30%;
+}
+
+#survival-info {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    justify-content: center;
+}
+
+#scenario-panel {
+    position: absolute;
+    left: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 420px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+#scenario-text {
+    font-size: 0.7rem;
+    color: var(--grey-light);
+    line-height: 1.5;
+    margin: 0.4em 0 0.6em;
+}
+
+#scenario-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.scenario-btn {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--white-soft);
+    background: var(--bg-mid);
+    border: 1px solid var(--purple-dim);
+    padding: 0.5em 0.8em;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    line-height: 1.4;
+}
+
+.scenario-btn:hover {
+    background: rgba(232, 197, 71, 0.1);
+}
+
+.scenario-reason { border-left: 3px solid #e04060; }
+.scenario-reason:hover { border-color: #ff6080; background: rgba(224, 64, 96, 0.08); }
+
+.scenario-tradition { border-left: 3px solid #4aaf5a; }
+.scenario-tradition:hover { border-color: #6acf7a; background: rgba(74, 175, 90, 0.08); }
+
+.scenario-synthesis { border-left: 3px solid #f0d060; }
+.scenario-synthesis:hover { border-color: #ffe080; background: rgba(240, 208, 96, 0.08); }
+
+#tradition-panel {
+    position: absolute;
+    right: 1em;
+    bottom: 1.5em;
+    background: rgba(13, 10, 26, 0.92);
+    border: 1px solid var(--purple-dim);
+    padding: 0.8em 1em;
+    max-width: 220px;
+}
+
+#tradition-list {
+    font-size: 0.65rem;
+    color: var(--grey-light);
+    line-height: 1.6;
+    margin-top: 0.3em;
+}
+
+#explorer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+}
+
+.explorer-content {
+    text-align: center;
+    max-width: 520px;
+    padding: 2em;
+    animation: fadeInUp 1s ease-out;
+    border: 1px solid var(--grey-cold);
+    background: rgba(13, 10, 26, 0.95);
+}
+
+#explorer-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+/* ======================================
    LEVEL 5: COMMENSURABLE - Life Resources
    ====================================== */
 

@@ -59,6 +59,9 @@ class GameEngine {
         if (typeof Level06Talents !== 'undefined') {
             this.levels[6] = Level06Talents;
         }
+        if (typeof Level07SecretSuccess !== 'undefined') {
+            this.levels[7] = Level07SecretSuccess;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -239,6 +242,13 @@ class GameEngine {
         const l6Elements = ['talent-ui', 'task-panel', 'npc-panel',
                             'comparison-overlay', 'bargain-overlay'];
         for (const id of l6Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 7 UI
+        const l7Elements = ['survival-ui', 'scenario-panel', 'tradition-panel',
+                            'explorer-overlay'];
+        for (const id of l7Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }
