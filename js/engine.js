@@ -68,6 +68,9 @@ class GameEngine {
         if (typeof Level09ConflictMistake !== 'undefined') {
             this.levels[9] = Level09ConflictMistake;
         }
+        if (typeof Level10SSRI !== 'undefined') {
+            this.levels[10] = Level10SSRI;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -269,6 +272,13 @@ class GameEngine {
         const l9Elements = ['conflict-ui', 'policy-panel', 'stakeholder-panel',
                             'mode-select-overlay', 'action-select-overlay'];
         for (const id of l9Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 10 UI
+        const l10Elements = ['ssri-ui', 'brain-panel', 'medication-panel',
+                             'activity-panel', 'kirsch-overlay'];
+        for (const id of l10Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }

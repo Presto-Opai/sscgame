@@ -2202,6 +2202,300 @@ body {
     flex-wrap: wrap;
 }
 
+/* ======================================
+   LEVEL 10 — SSRIs
+   ====================================== */
+
+/* Top bar */
+#ssri-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+#ssri-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.2em;
+    padding: 0.5em 1.2em;
+    background: rgba(13, 10, 26, 0.85);
+    border-bottom: 1px solid rgba(96, 160, 224, 0.15);
+    flex-wrap: wrap;
+}
+
+.ssri-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    flex: 1;
+    min-width: 120px;
+}
+
+.ssri-stat .bar-track {
+    flex: 1;
+    min-width: 60px;
+}
+
+.ssri-hamd-fill {
+    background: linear-gradient(90deg, #60aa60, #c0a030, #c06060);
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.ssri-serotonin-fill {
+    background: linear-gradient(90deg, #304080, #60a0e0);
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+#ssri-info {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+#humanity-bar-l10 {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    min-width: 100px;
+}
+
+#humanity-bar-l10 .bar-track {
+    width: 80px;
+}
+
+/* Brain panel */
+#brain-panel {
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    width: 180px;
+    background: rgba(13, 10, 26, 0.8);
+    border: 1px solid rgba(96, 160, 224, 0.15);
+    padding: 0.6em;
+    font-size: 0.75rem;
+    z-index: 15;
+}
+
+/* Medication panel */
+#medication-panel {
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    width: 260px;
+    background: rgba(13, 10, 26, 0.85);
+    border: 1px solid rgba(96, 160, 224, 0.2);
+    padding: 0.6em;
+    z-index: 15;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.med-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6em 0.8em;
+    margin-bottom: 0.4em;
+    background: rgba(96, 160, 224, 0.1);
+    border: 1px solid rgba(96, 160, 224, 0.25);
+    color: var(--grey-light);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.med-btn:hover {
+    background: rgba(96, 160, 224, 0.2);
+    border-color: rgba(96, 160, 224, 0.5);
+}
+
+.med-maoi {
+    border-color: rgba(224, 160, 64, 0.3);
+    background: rgba(224, 160, 64, 0.08);
+}
+
+.med-maoi:hover {
+    background: rgba(224, 160, 64, 0.15);
+    border-color: rgba(224, 160, 64, 0.5);
+}
+
+.med-nothing {
+    border-color: rgba(138, 138, 154, 0.3);
+    background: rgba(138, 138, 154, 0.05);
+}
+
+.med-nothing:hover {
+    background: rgba(138, 138, 154, 0.12);
+}
+
+.med-more {
+    background: transparent;
+    border-color: rgba(138, 138, 154, 0.2);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.med-more:hover {
+    opacity: 1;
+}
+
+.med-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    padding: 0.5em;
+    margin-bottom: 0.4em;
+}
+
+.med-active {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: #60a0e0;
+    margin-bottom: 0.2em;
+}
+
+.med-maoi-active {
+    color: #e0a040;
+}
+
+.med-detail {
+    font-size: 0.72rem;
+    color: var(--grey-mid);
+}
+
+.med-forbidden {
+    font-size: 0.72rem;
+    color: #d44040;
+    font-weight: bold;
+}
+
+.dose-controls {
+    display: flex;
+    gap: 0.4em;
+    margin-top: 0.3em;
+}
+
+.dose-btn {
+    flex: 1;
+    padding: 0.35em;
+    background: rgba(96, 160, 224, 0.08);
+    border: 1px solid rgba(96, 160, 224, 0.2);
+    color: var(--grey-mid);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    transition: all 0.2s;
+}
+
+.dose-btn:hover {
+    background: rgba(96, 160, 224, 0.15);
+}
+
+.dose-btn.active {
+    background: rgba(96, 160, 224, 0.25);
+    border-color: #60a0e0;
+    color: #60a0e0;
+}
+
+/* Activity panel */
+#activity-panel {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    max-width: 90vw;
+    background: rgba(13, 10, 26, 0.85);
+    border: 1px solid rgba(96, 160, 224, 0.15);
+    padding: 0.6em;
+    z-index: 15;
+}
+
+.energy-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: #60a0e0;
+    margin-bottom: 0.3em;
+}
+
+.activity-btn {
+    display: inline-block;
+    padding: 0.5em 0.8em;
+    margin: 0.2em;
+    background: rgba(96, 160, 224, 0.08);
+    border: 1px solid rgba(96, 160, 224, 0.2);
+    color: var(--grey-light);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    transition: all 0.2s;
+}
+
+.activity-btn:hover:not(:disabled) {
+    background: rgba(96, 160, 224, 0.2);
+    border-color: rgba(96, 160, 224, 0.5);
+}
+
+.activity-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.activity-btn .act-name {
+    display: block;
+    font-size: 0.8rem;
+}
+
+.activity-btn .act-cost {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--grey-mid);
+}
+
+.end-day-btn {
+    background: rgba(200, 160, 60, 0.12);
+    border-color: rgba(200, 160, 60, 0.3);
+    color: #c0a040;
+}
+
+.end-day-btn:hover {
+    background: rgba(200, 160, 60, 0.25);
+    border-color: rgba(200, 160, 60, 0.5);
+}
+
+/* Kirsch overlay */
+#kirsch-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 160;
+}
+
+.kirsch-content {
+    max-width: 520px;
+    padding: 2em;
+    background: rgba(13, 10, 26, 0.95);
+    border: 1px solid rgba(138, 138, 154, 0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+#kirsch-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;

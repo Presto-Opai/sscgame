@@ -71,10 +71,10 @@
                     <span class="level-name">Conflict vs. Mistake</span>
                     <span class="level-genre">Dual-Mode Strategy</span>
                 </button>
-                <button class="level-card locked" data-level="10">
+                <button class="level-card unlocked" data-level="10">
                     <span class="level-number">X</span>
                     <span class="level-name">SSRIs: Much More Than You Wanted to Know</span>
-                    <span class="level-genre">Coming Soon</span>
+                    <span class="level-genre">Body-Horror Puzzle</span>
                 </button>
             </div>
             <button id="btn-back-title" class="menu-btn">BACK</button>
@@ -512,6 +512,49 @@
                     </div>
                 </div>
 
+                <!-- Level 10 UI -->
+                <div id="ssri-ui" style="display:none;">
+                    <div id="ssri-top-bar">
+                        <div class="ssri-stat">
+                            <span class="bar-label">HAM-D</span>
+                            <div class="bar-track"><div class="bar-fill ssri-hamd-fill" id="ssri-hamd-fill"></div></div>
+                            <span id="ssri-hamd-val" class="score-value">22</span>
+                        </div>
+                        <div class="ssri-stat">
+                            <span class="bar-label">SEROTONIN</span>
+                            <div class="bar-track"><div class="bar-fill ssri-serotonin-fill" id="ssri-serotonin-fill"></div></div>
+                            <span id="ssri-serotonin-val" class="score-value">20</span>
+                        </div>
+                        <div id="ssri-info">
+                            <span id="ssri-day" class="resource">Day 0 / 120</span>
+                            <span id="ssri-weather" class="resource">heavy grey</span>
+                        </div>
+                        <div id="humanity-bar-l10">
+                            <span class="bar-label">HUMANITY</span>
+                            <div class="bar-track"><div class="bar-fill" id="humanity-fill-l10"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="brain-panel" style="display:none;">
+                    <span class="panel-title">BRAIN STATE</span>
+                    <div id="brain-info"></div>
+                </div>
+                <div id="medication-panel" style="display:none;">
+                    <span class="panel-title">MEDICATION</span>
+                    <div id="med-buttons"></div>
+                </div>
+                <div id="activity-panel" style="display:none;">
+                    <span class="panel-title">DAILY ACTIVITIES</span>
+                    <span id="energy-display" class="energy-label">Energy: 3 / 3</span>
+                    <div id="activity-buttons"></div>
+                </div>
+                <div id="kirsch-overlay" style="display:none;">
+                    <div class="kirsch-content">
+                        <p id="kirsch-text"></p>
+                        <button id="btn-kirsch-dismiss" class="menu-btn">...but I feel slightly better.</button>
+                    </div>
+                </div>
+
                 <div id="message-overlay" style="display:none;">
                     <div id="message-box">
                         <p id="message-text"></p>
@@ -561,6 +604,7 @@
     <script src="js/levels/level07-secret-success.js"></script>
     <script src="js/levels/level08-motte-bailey.js"></script>
     <script src="js/levels/level09-conflict-mistake.js"></script>
+    <script src="js/levels/level10-ssri.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const engine = new GameEngine();
