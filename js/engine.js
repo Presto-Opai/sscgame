@@ -65,6 +65,9 @@ class GameEngine {
         if (typeof Level08MotteBailey !== 'undefined') {
             this.levels[8] = Level08MotteBailey;
         }
+        if (typeof Level09ConflictMistake !== 'undefined') {
+            this.levels[9] = Level09ConflictMistake;
+        }
 
         this.protagonist = new Protagonist();
     }
@@ -259,6 +262,13 @@ class GameEngine {
         const l8Elements = ['motte-ui', 'claims-panel', 'debate-log-panel',
                             'opponent-panel', 'debate-choice-overlay', 'attack-choice-overlay'];
         for (const id of l8Elements) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+        // Level 9 UI
+        const l9Elements = ['conflict-ui', 'policy-panel', 'stakeholder-panel',
+                            'mode-select-overlay', 'action-select-overlay'];
+        for (const id of l9Elements) {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         }
